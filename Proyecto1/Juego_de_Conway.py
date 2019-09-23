@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-# Funcion que determina si la celula vive, muere
-# o renace segun las siguientes condiciones.
+# Función que determina si la célula vive, muere
+# o renace según las siguientes condiciones.
 def vive_muere(variante, vecinos):
 
 	if variante == "X":
@@ -20,8 +20,8 @@ def vive_muere(variante, vecinos):
 			return " "
 
 
-# Funcion que contabiliza las 8 celulas vecinas
-# de cada celula dentra de la matriz.
+# Función que contabiliza las 8 células vecinas
+# de cada célula dentra de la matriz.
 def celulas_vecinas(matriz, y, x, tamaño):
 
 	vecinos = 0
@@ -38,8 +38,8 @@ def celulas_vecinas(matriz, y, x, tamaño):
 	return vecinos
 
 
-# Funcion que imprime la matriz actual y modifica
-# para la siguiente generacion
+# Función que imprime la matriz actual y modifica
+# para la siguiente generación
 def funcion_principal(tamaño, matriz, generacion):
 
 	os.system("clear")		# Se mantiene limpia la terminal
@@ -59,14 +59,14 @@ def funcion_principal(tamaño, matriz, generacion):
 			print(matriz[i][j], "|", end = "")
 		print("")
 	
-	# Ciclo que guarda la siguiente generacion
+	# Ciclo que guarda la siguiente generación
 	for i in range(tamaño):
 	
 		fila = []
 		for j in range(tamaño):
 			vecinos = celulas_vecinas(matriz, i, j, tamaño)
 			
-			# Condiciones para contar la celulas que nacen,
+			# Condiciones para contar la células que nacen,
 			# siguen vivas o mueren
 			if matriz[i][j] == "X":
 				if vive_muere(matriz[i][j], vecinos) == "X":
@@ -88,9 +88,11 @@ def funcion_principal(tamaño, matriz, generacion):
 	# las generaciones en la terminal
 	time.sleep(0.5)
 	
-	if viva != 0:
+	if matriz != matriz_2:
 		# Se vuelve a autollamar la funcion infinitamente
 		funcion_principal(tamaño, matriz_2, generacion)
+	elif viva > 0:
+		print("\nLa vida prosperará")
 	else:
 		print("\nLa vida se extinguió")
 
@@ -122,4 +124,4 @@ except ValueError:
 except TypeError:
 	print("El tipo ingresado no es valido")
 except:
-	print("Virus trollano")
+	print("Error")
